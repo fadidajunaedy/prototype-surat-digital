@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('wargas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('nomor_kk')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('nomor_kk')->references('nomor_kk')->on('kks')->onDelete('cascade');
             $table->string('nama');
             $table->string('nik')->unique()->nullable();
             $table->string('email')->unique();
@@ -41,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('warga');
+        Schema::dropIfExists('wargas');
     }
 };

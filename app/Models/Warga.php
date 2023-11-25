@@ -12,6 +12,7 @@ class Warga extends Model
     protected $fillable = [
         'user_id',
         'nama',
+        'nomor_kk',
         'nik',
         'email',
         'nomor_telepon',

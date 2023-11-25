@@ -1,12 +1,12 @@
 @extends('authentication.template')
 @section('content')
 <section class="min-h-screen w-full bg-base-200 flex justify-center items-center prose-sm">
-    <div class="max-w-4xl w-full mx-auto bg-base-100 grid grid-cols-2 overflow-hidden rounded-lg shadow-xl">
-        <div class="bg-red-400">
+    <div class="max-w-4xl w-full mx-auto bg-base-100 grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-lg shadow-xl">
+        <div class="bg-base-100 p-4">
             <img 
-                src={{ asset('assets/images/hero.png') }}
+                src={{ asset('assets/images/hero-daftar.png') }}
                 alt="Hero Image"
-                class="w-full h-full object-cover prose-none my-0"
+                class="w-full h-full object-contain prose-none my-0"
                 />
         </div>
         <div class="bg-base-100 flex flex-col justify-center gap-2 py-8 px-4">

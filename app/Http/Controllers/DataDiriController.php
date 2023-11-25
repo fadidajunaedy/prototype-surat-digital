@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Warga;
+use App\Models\Kk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -62,6 +63,7 @@ class DataDiriController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama' => ['required', 'string', 'max:255'],
+            'nomor_kk' => ['required', 'string', 'max:16', 'regex:/^[0-9]*$/'],
             'nik' => ['required', 'string', 'max:16', 'regex:/^[0-9]*$/'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'nomor_telepon' => ['string', 'max:15', 'regex:/^[0-9]*$/'],
@@ -72,8 +74,9 @@ class DataDiriController extends Controller
             'agama' => ['string'],
             'pendidikan_terakhir' => ['string'],
             'status' => ['string'],
-            'nomor_rumah' => ['string'],
+            'nomor_rumah' => ['integer'],
             'foto_profil' => ['image'],
+            'delete_foto_profil' => ['nullable', 'boolean'],
         ], [
             'required' => 'Kolom :attribute harus diisi.',
             'email' => 'Format email tidak valid.',
@@ -88,8 +91,14 @@ class DataDiriController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $kk = Kk::where('nomor_kk', $request->nomor_kk)->first();
+        if (!$kk) {
+            return redirect()->back()->withErrors("Nomor KK belum terdaftar")->withInput();
+        }
+
         $data = [
             'nama' => $request->nama,
+            'nomor_kk' => $request->nomor_kk,
             'nik' => $request->nik,
             'nomor_telepon' => $request->nomor_telepon,
             'tempat_lahir' => $request->tempat_lahir,
@@ -109,12 +118,18 @@ class DataDiriController extends Controller
             $foto_profil->move(public_path('foto-profil'), $foto_name);
 
             $warga = Warga::find(Auth::id());
-            if($warga) {
-                if ($warga->foto_profil) {
-                    File::delete(public_path('foto-profile').'/'.$warga->foto_profil);
-                }
+            if($warga && $warga->foto_profil) {    
+                File::delete(public_path('foto-profile').'/'.$warga->foto_profil);
             }
             $data['foto_profil'] = $foto_name;
+
+        } elseif ($request->input('delete_foto_profil')) {
+            $warga = Warga::find(Auth::id());
+            if ($warga && $warga->foto_profil) {
+                File::delete(public_path('foto-profil').'/'.$warga->foto_profil);
+                $data['foto_profil'] = null;
+            }
+
         } else {
             unset($data['foto_profil']);
         }
@@ -122,6 +137,26 @@ class DataDiriController extends Controller
         Warga::where('user_id', Auth::id())->update($data);
         
         return redirect()->back()->with('success', 'Berhasil update data diri!');
+    }
+
+    public function changePassword(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'old_password' => ['required', 'string', 'min:8'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if(!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->withErrors("Password saat ini tidak sesuai");
+        }
+        User::where('id',auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        return back()->with("success", "Berhasil merubah password!");
     }
 
     /**

@@ -9,15 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MyTestEmail extends Mailable
+class EmailVerification extends Mailable
 {
     use Queueable, SerializesModels;
+
     /**
      * Create a new message instance.
      */
     public function __construct()
     {
-        // 
+        //
     }
 
     /**
@@ -26,7 +27,7 @@ class MyTestEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'My Test Email',
+            subject: 'Email Verification',
         );
     }
 
@@ -36,7 +37,7 @@ class MyTestEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.test-mail'
+            view: 'view.name',
         );
     }
 

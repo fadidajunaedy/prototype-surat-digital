@@ -1,11 +1,11 @@
-<section class="min-h-screen max-w-6xl mx-auto flex flex-col justify-center items-center gap-6 p-4">
-    <div class="rounded-lg overflow-hidden shadow-lg">
+<section class="min-h-screen max-w-6xl mx-auto flex flex-col justify-center items-center gap-6 p-4 prose-sm">
+    <div data-aos="fade-up" class="rounded-lg overflow-hidden">
         <img 
-        src={{ asset('assets/images/hero.png') }}
+        src={{ asset('assets/images/hero-cta.png') }}
         alt="Hero Image"
-        class="w-full max-w-lg object-cover "
+        class="w-full max-w-md object-cover"
         />
     </div>
-    <h2 class="max-w-xl text-center text-slate-500 leading-loose">Ayo mulai sekarang! Ajukan surat pengantar Anda dengan Surat Digital : RT 005/014 dan rasakan kemudahan dalam mengurus administrasi RT/RW.</h2>
-    <button class="btn btn-primary">Mulai Pengajuan</button>
+    <p data-aos="fade-up" class="max-w-xl text-center text-slate-500 leading-loose">Ayo mulai sekarang! Ajukan surat pengantar Anda dengan Surat Digital : RT 005/014 dan rasakan kemudahan dalam mengurus administrasi RT/RW.</p>
+    <button data-aos="flip-up" class="btn btn-primary">Mulai Pengajuan</button>
 </section>

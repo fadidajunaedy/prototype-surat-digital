@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-// use Illuminate\Support\Facades\Mail;
-// use App\Mail\MyTestEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
+use App\Mail\MyTestEmail;
 
 class UserController extends Controller
 {   
@@ -48,7 +49,10 @@ class UserController extends Controller
             'email' => $user->email,
         ]);
 
-        return redirect('masuk')->with('success', 'Registration successful! Please check your email to verify your account.');
+        event(new Registered($user));
+        auth()->login($user);
+        return redirect()->route('verification.notice')->with('success', 'Email Verifikasi telah dikirim ke akun email Anda, mohon lakukan verifikasi');
+        // return redirect('masuk')->with('success', 'Registration successful! Please check your email to verify your account.');
     }
 
     public function login(Request $request) {
@@ -88,6 +92,11 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/masuk');
+    }
+
+    public function testMail() {
+        Mail::to('fadidajunaedy24@gmail.com')->send(new MyTestEmail);
+        return '<h1>Success</h1>';
     }
 
 }
