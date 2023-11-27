@@ -10,6 +10,7 @@ use App\Http\Controllers\PengajuanAdminController;
 use App\Http\Controllers\KkAdminController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\WargaAdminController;
+use App\Http\Controllers\EditorAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,8 +110,17 @@ Route::controller(WargaAdminController::class)->group(function () {
     Route::get('/admin/warga/create', 'create')->name('admin.warga.create');
     Route::post('/admin/warga/store', 'store')->name('admin.warga.store');
     Route::get('/admin/warga/{id}/edit', 'edit')->name('admin.warga.edit');
-    Route::patch('/admin/warga/{id}/update', 'update')->name('admin.warga.update');
-    Route::delete('/admin/warga/{id}', 'destroy')->name('admin.warga.destroy');
+    Route::patch('/admin/warga/{user_id}/update', 'update')->name('admin.warga.update');
+    Route::delete('/admin/warga/{user_id}', 'destroy')->name('admin.warga.destroy');
+});
+
+Route::controller(EditorAdminController::class)->group(function () {
+    Route::get('/admin/editor', 'index')->name('admin.editor');
+    Route::get('/admin/editor/create', 'create')->name('admin.editor.create');
+    Route::post('/admin/editor/store', 'store')->name('admin.editor.store');
+    Route::get('/admin/editor/{id}/edit', 'edit')->name('admin.editor.edit');
+    Route::patch('/admin/editor/{user_id}/update', 'update')->name('admin.editor.update');
+    Route::delete('/admin/editor/{user_id}', 'destroy')->name('admin.editor.destroy');
 });
 
 Route::get('/test-mail', [UserController::class, 'testMail']);

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nomor_pengantar')->unique()->nullable();
             $table->unsignedBigInteger('warga_id');
-            $table->foreign('warga_id')->references('id')->on('wargas');
+            $table->foreign('warga_id')->references('id')->on('wargas')->onDelete('cascade');
             $table->string('keperluan');
             $table->enum('status_rt', ['pending', 'accepted', 'declined'])->default('pending');
             $table->enum('status_rw', ['pending', 'accepted', 'declined'])->default('pending');

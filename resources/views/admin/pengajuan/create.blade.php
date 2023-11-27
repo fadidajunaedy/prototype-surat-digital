@@ -21,10 +21,10 @@
                 <label class="label">
                   <span class="label-text font-semibold">ID Warga <span class="text-red-400">*</span></span>
                 </label>
-                <select name="warga_id" class="select select_bordered">
+                <select name="warga_id" class="select select-sm select-bordered ">
                     <option disabled selected>Pilih salah satu</option>
                     @foreach ($data as $item)
-                        <option value="{{ $item->id }}">{{ $item->id }}</option>
+                        <option value="{{ $item->id }}">{{ $item->id }} ({{ $item->nama }})</option>
                     @endforeach
                 </select>
             </div>
@@ -34,14 +34,14 @@
                 </label>
                 <textarea 
                 name="keperluan" 
-                class="textarea textarea-bordered h-24" required></textarea>
+                class="textarea textarea-sm textarea-bordered h-24" required></textarea>
             </div>
             <div class="flex gap-2">
                 <div class="form-control w-full">
                     <label class="label">
                       <span class="label-text font-semibold">Status RT <span class="text-red-400">*</span></span>
                     </label>
-                    <select name="status_rt" class="select select-bordered">
+                    <select name="status_rt" class="select select-sm select-bordered">
                         <option disabled>Pilih salah satu</option>
                         <option value="pending">Pending</option>
                         <option value="accepted">Accepted</option>
@@ -52,7 +52,7 @@
                     <label class="label">
                       <span class="label-text font-semibold">Status RW <span class="text-red-400">*</span></span>
                     </label>
-                    <select name="status_rw" class="select select-bordered">
+                    <select name="status_rw" class="select select-sm select-bordered">
                         <option disabled>Pilih salah satu</option>
                         <option value="pending">Pending</option>
                         <option value="accepted">Accepted</option>

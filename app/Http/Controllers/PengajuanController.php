@@ -48,11 +48,16 @@ class PengajuanController extends Controller
         $rw = '014'; 
         $bulan = date('m'); 
         $tahun = date('Y'); 
-
-        $nomorPengantar = sprintf('%03d', $id) . '/' . 'RT.'. $rt . ' ' . 'RW.' . $rw . '/' . $bulan . '/' . $tahun;
-
+    
+        $romawi = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+    
+        $bulanRomawi = $romawi[intval($bulan)];
+    
+        $nomorPengantar = sprintf('%03d', $id) . '/' . 'RT.'. $rt . ' ' . 'RW.' . $rw . '/' . $bulanRomawi . '/' . $tahun;
+    
         return $nomorPengantar;
     }
+    
 
     public function store(Request $request)
     {

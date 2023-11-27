@@ -126,7 +126,7 @@
                                 <form method="dialog">
                                     <button class="btn">Batal</button>
                                 </form>
-                                <form action="{{ url('admin/warga/'.$item->id)}}" method="POST">
+                                <form action="{{ url('admin/warga/'.$item->user_id)}}" method="POST">
                                     @csrf 
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-error text-white">Hapus</button>

@@ -135,6 +135,7 @@ class DataDiriController extends Controller
         }
         
         Warga::where('user_id', Auth::id())->update($data);
+        User::where('id', Auth::id())->update(['nama' => $request->nama]);
         
         return redirect()->back()->with('success', 'Berhasil update data diri!');
     }
