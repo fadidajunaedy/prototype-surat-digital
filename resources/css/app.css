@@ -20,3 +20,28 @@ body {
     z-index: 10 !important;
     text-align: left !important;
 }
+
+li .active {
+    background-color: #F2F2F2 !important;
+    color: unset !important;
+    font-weight: 600 !important;
+}
+
+.pagination {
+    /* background-color: saddlebrown; */
+}
+
+.pagination nav span {
+    background-color: #D2D2D2;
+    border-radius: 9px;
+    padding: 9px 18px;
+    margin: 0 9px;
+}
+
+.pagination nav a {
+    background-color: #3F00E7;
+    color: #FFFFFF;
+    border-radius: 9px;
+    padding: 9px 18px;
+    margin: 0 9px;
+}

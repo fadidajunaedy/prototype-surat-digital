@@ -61,12 +61,12 @@
                 </div>
             </form>
         </div>
-        <div class="col-span-1 bg-base-100 p-6 rounded-xl shadow-xl">
+        <div class="col-span-1 bg-base-100 p-6 rounded-xl shadow-xl flex flex-col justify-center gap-2 h-[260px]">
             <div class="mb-8">
                 <span class="font-semibold">Created At</span>
                 <p>{{ $data->created_at->diffForHumans() }}</p>
             </div>
-            <div class="mb-4">
+            <div>
                 <span class="font-semibold">Updated At</span>
                 <p>{{ $data->updated_at->diffForHumans() }}</p>
             </div>
