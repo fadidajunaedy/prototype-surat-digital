@@ -117,14 +117,14 @@ class DataDiriController extends Controller
             $foto_name = date('ymdhis').".".$foto_extension;
             $foto_profil->move(public_path('foto-profil'), $foto_name);
 
-            $warga = Warga::find(Auth::id());
+            $warga = Warga::where('user_id', Auth::id())->first();
             if($warga && $warga->foto_profil) {    
                 File::delete(public_path('foto-profile').'/'.$warga->foto_profil);
             }
             $data['foto_profil'] = $foto_name;
 
         } elseif ($request->input('delete_foto_profil')) {
-            $warga = Warga::find(Auth::id());
+            $warga = Warga::where('user_id', Auth::id())->first();
             if ($warga && $warga->foto_profil) {
                 File::delete(public_path('foto-profil').'/'.$warga->foto_profil);
                 $data['foto_profil'] = null;

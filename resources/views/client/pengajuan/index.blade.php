@@ -17,16 +17,55 @@
                 <tr>
                     <th class="text-center">No</th>
                     <th>Nomor Pengantar</th>
-                    <th>Tanggal Berlaku</th>
                     <th>Keperluan</th>
                     <th class="text-center">Status RT</th>
                     <th class="text-center">Status RW</th>
-                    <th>Keterangan</th>
+                    <th class="text-center">Keterangan</th>
                     <th class="text-center">File</th>
                 </tr>
             </thead>
             <tbody>
+            @php
+                $i = $data->firstItem();
+            @endphp
+            @foreach ($data as $item)
                 <tr>
+                    <td class="text-center">{{ $i }}</td>
+                    <td>{{ $item->nomor_pengantar }}</td>
+                    <td>{{ $item->keperluan }}</td>
+                    <td class="text-center">
+                        @if ($item->status_rt == 'accepted')
+                            <div class="badge badge-sm bg-success text-white font-semibold badge-outline py-4 px-4">Accepted</div>
+                        @elseif($item->status_rt == 'declined')
+                            <div class="badge badge-sm bg-error text-white font-semibold badge-outline py-4 px-4">Declined</div>
+                        @else
+                            <div class="badge badge-sm bg-warning text-white font-semibold badge-outline py-4 px-4">Pending</div>
+                        @endif
+                    </td>
+                    <td class="text-center">
+                        @if ($item->status_rw == 'accepted')
+                            <div class="badge badge-sm bg-success text-white font-semibold badge-outline py-4 px-4">Accepted</div>
+                        @elseif($item->status_rw == 'declined')
+                            <div class="badge badge-sm bg-error text-white font-semibold badge-outline py-4 px-4">Declined</div>
+                        @else
+                            <div class="badge badge-sm bg-warning text-white font-semibold badge-outline py-4 px-4">Pending</div>
+                        @endif
+                    </td>
+                    <td class="text-center">
+                        @if ($item->keterangan == 'accepted')
+                            <div class="badge badge-sm bg-success text-white font-semibold badge-outline py-4 px-4">Accepted</div>
+                        @elseif($item->keterangan == 'declined')
+                            <div class="badge badge-sm bg-error text-white font-semibold badge-outline py-4 px-4">Declined</div>
+                        @else
+                            <div class="badge badge-sm bg-warning text-white font-semibold badge-outline py-4 px-4">Pending</div>
+                        @endif
+                    </td>
+                </tr>
+            @php
+                $i++
+            @endphp
+            @endforeach
+                {{-- <tr>
                     <td class="text-center">1</td>
                     <td>PNTR/05/014/001</td>
                     <td>21 November 2023</td>
@@ -46,7 +85,7 @@
                             </svg>
                         </a>
                     </td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
     </div>

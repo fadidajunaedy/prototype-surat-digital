@@ -91,7 +91,7 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/masuk');
+        return redirect('/masuk')->with('success', 'Berhasil Keluar');
     }
 
     public function testMail() {

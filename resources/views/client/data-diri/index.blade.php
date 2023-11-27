@@ -161,69 +161,69 @@
                         </button>
                     </div>
                 </div>
-                <input type="file" id="input_foto_profil" name="foto_profil" class="file-input file-input-bordered w-full hidden" />
+                <input type="file" id="input_foto_profil" name="foto_profil" class="file-input file-input-bordered w-full hidden" accept="image/png, image/gif, image/jpeg"/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Nama</span>
+                  <span class="label-text font-semibold">Nama <span class="text-red-400">*</span></span>
                 </label>
                 <input type="text" name="nama" class="input input-bordered w-full" value="{{ $data->nama }}" required/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Nomor Kartu Keluarga</span>
+                  <span class="label-text font-semibold">Nomor Kartu Keluarga <span class="text-red-400">*</span></span>
                 </label>
                 <input type="number" name="nomor_kk" class="input input-bordered w-full" value="{{ $data->nomor_kk }}" required/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">NIK</span>
+                  <span class="label-text font-semibold">NIK <span class="text-red-400">*</span></span>
                 </label>
                 <input type="number" name="nik" class="input input-bordered w-full" value="{{ $data->nik }}" required/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Email</span>
+                  <span class="label-text font-semibold">Email <span class="text-red-400">*</span></span>
                 </label>
                 <input type="hidden" name="email" value="{{ $data->email }}">
                 <input type="email" class="input input-bordered w-full" value="{{ $data->email }}" disabled/>
             </div>  
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">No Telepon</span>
+                  <span class="label-text font-semibold">No Telepon <span class="text-red-400">*</span></span>
                 </label>
                 <input type="number" name="nomor_telepon" class="input input-bordered w-full" value="{{ $data->nomor_telepon }}" required/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Tempat Lahir</span>
+                  <span class="label-text font-semibold">Tempat Lahir <span class="text-red-400">*</span></span>
                 </label>
                 <input type="text" name="tempat_lahir" class="input input-bordered w-full" value="{{ $data->tempat_lahir }}" required/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Tanggal Lahir</span>
+                  <span class="label-text font-semibold">Tanggal Lahir <span class="text-red-400">*</span></span>
                 </label>
                 <input type="date" name="tanggal_lahir" class="input input-bordered w-full" value="{{ $data->tanggal_lahir }}" required/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                    <span class="label-text font-semibold">Jenis Kelamin</span>
+                    <span class="label-text font-semibold">Jenis Kelamin <span class="text-red-400">*</span></span>
                 </label>
                 <div class="flex gap-4">
                     <label class="label cursor-pointer justify-start gap-2">
                         <input type="radio" name="jenis_kelamin" value="l" class="radio checked:bg-blue-500" {{ $data->jenis_kelamin === 'l' ? 'checked' : '' }} required/>
-                        <span class="label-text">Laki-laki</span> 
+                        <span class="label-text">Laki-laki <span class="text-red-400">*</span></span> 
                     </label>
                     <label class="label cursor-pointer justify-start gap-2">
                         <input type="radio" name="jenis_kelamin" value="p" class="radio checked:bg-pink-500" {{ $data->jenis_kelamin === 'p' ? 'checked' : '' }} required/>
-                        <span class="label-text">Perempuan</span> 
+                        <span class="label-text">Perempuan <span class="text-red-400">*</span></span> 
                     </label>    
                 </div>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Kewarganegaraan</span>
+                  <span class="label-text font-semibold">Kewarganegaraan <span class="text-red-400">*</span></span>
                 </label>
                 <select name="kewarganegaraan" class="select select-bordered" required>
                     <option disabled>Pilih salah satu</option>
@@ -233,7 +233,7 @@
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Agama</span>
+                  <span class="label-text font-semibold">Agama <span class="text-red-400">*</span></span>
                 </label>
                 <select name="agama" class="select select-bordered" required>
                     <option disabled selected>Pilih salah satu</option>
@@ -247,7 +247,7 @@
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Pendidikan Terakhir</span>
+                  <span class="label-text font-semibold">Pendidikan Terakhir <span class="text-red-400">*</span></span>
                 </label>
                 <select name="pendidikan_terakhir" class="select select-bordered" required>
                     <option disabled selected>Pilih salah satu</option>
@@ -262,7 +262,7 @@
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Status</span>
+                  <span class="label-text font-semibold">Status <span class="text-red-400">*</span></span>
                 </label>
                 <select name="status" class="select select-bordered" required>
                     <option disabled selected>Pilih salah satu</option>
@@ -274,31 +274,31 @@
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Kelurahan</span>
+                  <span class="label-text font-semibold">Kelurahan <span class="text-red-400">*</span></span>
                 </label>
                 <input type="text" name="kelurahan" class="input input-bordered w-full" value="{{ $data->kelurahan }}" disabled/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Kecamatan</span>
+                  <span class="label-text font-semibold">Kecamatan <span class="text-red-400">*</span></span>
                 </label>
                 <input type="text" name="kecamatan" class="input input-bordered w-full" value="{{ $data->kecamatan }}" disabled/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">RT</span>
+                  <span class="label-text font-semibold">RT <span class="text-red-400">*</span></span>
                 </label>
                 <input type="number" name="rt" class="input input-bordered w-full" value="{{ $data->rt }}" disabled/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">RW</span>
+                  <span class="label-text font-semibold">RW <span class="text-red-400">*</span></span>
                 </label>
                 <input type="number" name="rw" class="input input-bordered w-full" value="{{ $data->rw }}" disabled/>
             </div>
             <div class="col-span-2 md:col-span-1 form-control w-full">
                 <label class="label">
-                  <span class="label-text font-semibold">Nomor Rumah</span>
+                  <span class="label-text font-semibold">Nomor Rumah <span class="text-red-400">*</span></span>
                 </label>
                 <input type="number" name="nomor_rumah" class="input input-bordered w-full" value="{{ $data->nomor_rumah }}" required/>
             </div>
@@ -316,19 +316,19 @@
                 @method('PATCH')
                 <div class="col-span-3 lg:col-span-1 form-control w-full">
                     <label class="label">
-                      <span class="label-text font-semibold">Password Saat ini</span>
+                      <span class="label-text font-semibold">Password Saat ini <span class="text-red-400">*</span></span>
                     </label>
                     <input type="password" name="old_password" class="input input-bordered w-full" />
                 </div>
                 <div class="col-span-3 lg:col-span-1 form-control w-full">
                     <label class="label">
-                      <span class="label-text font-semibold">Password Baru</span>
+                      <span class="label-text font-semibold">Password Baru <span class="text-red-400">*</span></span>
                     </label>
                     <input type="password" name="new_password" class="input input-bordered w-full" />
                 </div>
                 <div class="col-span-3 lg:col-span-1 form-control w-full">
                     <label class="label">
-                      <span class="label-text font-semibold">Konfirmasi Password Baru</span>
+                      <span class="label-text font-semibold">Konfirmasi Password Baru <span class="text-red-400">*</span></span>
                     </label>
                     <input type="password" name="new_password_confirmation" class="input input-bordered w-full" />
                 </div>

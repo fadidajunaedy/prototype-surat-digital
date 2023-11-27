@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataDiriController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\VerificationController;
+
+use App\Http\Controllers\PengajuanAdminController;
+use App\Http\Controllers\KkAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +24,21 @@ Route::get('/', function () {
     return view('client.index');
 });
 
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
+Route::get('/admin/pengajuan', function () {
+    return view('admin.sections.pengajuan');
+});
+
 Route::get('/data-diri', function () {
     return view('client.data-diri.index');
 })->middleware('can:isAuthor');
 
-Route::get('/pengajuan-surat', function () {
-    return view('client.pengajuan-surat.index');
-});
+// Route::get('/pengajuan-surat', function () {
+//     return view('client.pengajuan-surat.index');
+// });
 
 // Route::get('/masuk', function () {
 //     return view('authentication.masuk');
@@ -46,9 +58,14 @@ Route::controller(UserController::class)->group(function () {
 });
 
 Route::controller(DataDiriController::class)->group(function () {
-    Route::get('/data-diri', 'index')->middleware('can:isAuthor');
-    Route::patch('/data-diri/update', 'update')->middleware('can:isAuthor')->name('data-diri.update');
-    Route::patch('/data-diri/change-password', 'changePassword')->middleware('can:isAuthor')->name('data-diri.change-password');
+    Route::get('/data-diri', 'index')->name('data-diri')->middleware('can:isAuthor');
+    Route::patch('/data-diri/update', 'update')->name('data-diri.update')->middleware('can:isAuthor');
+    Route::patch('/data-diri/change-password', 'changePassword')->name('data-diri.change-password')->middleware('can:isAuthor');
+});
+
+Route::controller(PengajuanController::class)->group(function () {
+    Route::get('/pengajuan', 'index')->name('pengajuan')->middleware('can:isAuthor');
+    Route::post('/pengajuan/store', 'store')->name('pengajuan.store')->middleware('can:isAuthor');
 });
 
 Route::controller(VerificationController::class)->group(function () {
@@ -56,6 +73,24 @@ Route::controller(VerificationController::class)->group(function () {
     Route::get('/email/verify/{id}/{hash}', 'verify')->name('verification.verify')->middleware(['auth','signed']);
     Route::get('/email/verify/confirm', 'confirm')->name('verification.confirm')->middleware('auth');
     Route::get('/email/verify/resend', 'resend')->name('verification.resend')->middleware(['auth','throttle']);
+});
+
+Route::controller(PengajuanAdminController::class)->group(function () {
+    Route::get('/admin/pengajuan', 'index')->name('admin.pengajuan');
+    Route::get('/admin/pengajuan/create', 'create')->name('admin.pengajuan.create');
+    Route::post('/admin/pengajuan/store', 'store')->name('admin.pengajuan.store');
+    Route::get('/admin/pengajuan/{id}/edit', 'edit')->name('admin.pengajuan.edit');
+    Route::patch('/admin/pengajuan/{id}/update', 'update')->name('admin.pengajuan.update');
+    Route::delete('/admin/pengajuan/{id}', 'destroy')->name('admin.pengajuan.destroy');
+});
+
+Route::controller(KkAdminController::class)->group(function () {
+    Route::get('/admin/kk', 'index')->name('admin.kk');
+    Route::get('/admin/kk/create', 'create')->name('admin.kk.create');
+    Route::post('/admin/kk/store', 'store')->name('admin.kk.store');
+    Route::get('/admin/kk/{id}/edit', 'edit')->name('admin.kk.edit');
+    Route::patch('/admin/kk/{id}/update', 'update')->name('admin.kk.update');
+    Route::delete('/admin/kk/{id}', 'destroy')->name('admin.kk.destroy');
 });
 
 Route::get('/test-mail', [UserController::class, 'testMail']);

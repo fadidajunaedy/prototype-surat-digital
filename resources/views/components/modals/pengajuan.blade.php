@@ -1,10 +1,12 @@
 <dialog id="modalPengajuan" class="modal bg-base-200 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10">
     <div class="modal-box prose-sm">
         <h3 class="font-bold text-lg mb-4 text-center">Pengajuan Surat</h3>
-        <form action="">
+        <form action="{{ route('pengajuan.store') }}" method="POST">
+            @csrf
+            @method('POST')
             <div class="w-full grid grid-cols-3 gap-4">
                 <label for="keperluan" class="label-text font-semibold">Keperluan</label>
-                <textarea name="keperluan" class="textarea textarea-bordered h-24 w-full col-span-2" required></textarea>
+                <textarea name="keperluan" class="textarea textarea-bordered h-24 w-full col-span-2" required>{{ old('keperluan') }}</textarea>
                 <label for="keperluan" class="label-text font-semibold">Data diri</label>
                 <input type="text" disabled placeholder="Otomatis dari data akun anda" class="w-full col-span-2 bg-base-100">
             </div>
