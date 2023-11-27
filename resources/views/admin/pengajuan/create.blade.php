@@ -9,7 +9,7 @@
     </div>
     <h2 class="font-semibold my-4 mb-4">Create Pengajuan</h2>
     @include('components.alert')
-    <div class="overflow-x-auto bg-base-100 p-4 rounded-lg shadow-xl max-w-xl">
+    <div class="overflow-x-auto bg-base-100 p-4 rounded-xl shadow-xl max-w-xl">
         <form 
         action="{{ route('admin.pengajuan.store') }}" 
         method="POST"

@@ -3,21 +3,21 @@
 <section class="min-h-[90vh] w-full prose-sm">
     <div class="text-sm breadcrumbs px-0 ">
         <ul class="mx-0 px-0 my-0">
-          <li class="mx-0 px-0">Kartu Keluarga</li> 
+          <li class="mx-0 px-0">User</li> 
           <li>List</li>
         </ul>
     </div>
     <div class="w-full flex justify-between items-center mb-4">
-        <h2 class="font-semibold my-4">Kartu Keluarga</h2>
+        <h2 class="font-semibold my-4">User</h2>
         <a 
-        href="{{ route('admin.kk.create')}}"
+        href="{{ route('admin.user.create')}}"
         class="btn btn-sm btn-primary"
         >Tambah</a>
     </div>
     @include('components.alert')
     <div class="overflow-x-auto bg-base-100 p-4 rounded-xl shadow-xl">
         <div class="w-full flex justify-end items-center mb-4">
-            <form action="{{ route('admin.kk') }}" method="GET" class="flex items-center gap-2">
+            <form action="{{ route('admin.user') }}" method="GET" class="flex items-center gap-2">
                 @csrf
                 <input type="text" name="keyword" class="input input-sm input-bordered" placeholder="Cari...">
                 <button type="submit" class="btn btn-sm btn-primary">Cari</button>
@@ -26,9 +26,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>NO</th>
-                    <th>Nomor Kartu Keluarga</th>
-                    <th>Nama Kepala</th>
+                    <th class="text-center">NO</th>
+                    <th>Nama</th>
+                    <th>Email</th>
                     <th class="text-center">Aksi</th>
                 </tr>
             </thead>
@@ -39,12 +39,12 @@
                 @endphp
                 @foreach ($data as $item)
                 <tr>
-                    <td>{{ $i }}</td>
-                    <td>{{ $item->nomor_kk }}</td>
-                    <td>{{ $item->nama_kepala }}</td>
+                    <td class="text-center">{{ $i }}</td>
+                    <td>{{ $item->nama }}</td>
+                    <td>{{ $item->email }}</td>
                     <td class="flex justify-center items-center gap-2">
                         <a 
-                        href="{{ url('admin/kk/'.$item->id).'/edit'}}"
+                        href="{{ url('admin/user/'.$item->id).'/edit'}}"
                         class="btn btn-sm btn-square btn-warning"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -72,7 +72,7 @@
                             <form method="dialog">
                                 <button class="btn">Batal</button>
                             </form>
-                            <form action="{{ url('admin/kk/'.$item->id)}}" method="POST">
+                            <form action="{{ url('admin/user/'.$item->id)}}" method="POST">
                                 @csrf 
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-error text-white">Hapus</button>

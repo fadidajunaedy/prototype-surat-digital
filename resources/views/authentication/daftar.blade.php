@@ -32,7 +32,6 @@
                     </label>
                     <div class="relative">
                         <input type="password" name="password" id="password" class="input input-bordered w-full" required />
-                        <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                 </div>
                 <div class="form-control w-full">
@@ -41,7 +40,6 @@
                     </label>
                     <div class="relative">
                         <input type="password" name="password_confirmation" id="password_confirmation" class="input input-bordered w-full" required />
-                        <span toggle="#password_confirmation" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                 </div>
                 <div class="form-control w-full">

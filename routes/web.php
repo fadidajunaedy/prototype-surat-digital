@@ -8,6 +8,7 @@ use App\Http\Controllers\VerificationController;
 
 use App\Http\Controllers\PengajuanAdminController;
 use App\Http\Controllers\KkAdminController;
+use App\Http\Controllers\UserAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,13 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
-Route::get('/admin/pengajuan', function () {
-    return view('admin.sections.pengajuan');
-});
+// Route::get('/admin/pengajuan', function () {
+//     return view('admin.sections.pengajuan');
+// });
 
-Route::get('/data-diri', function () {
-    return view('client.data-diri.index');
-})->middleware('can:isAuthor');
+// Route::get('/data-diri', function () {
+//     return view('client.data-diri.index');
+// })->middleware('can:isAuthor');
 
 // Route::get('/pengajuan-surat', function () {
 //     return view('client.pengajuan-surat.index');
@@ -91,6 +92,15 @@ Route::controller(KkAdminController::class)->group(function () {
     Route::get('/admin/kk/{id}/edit', 'edit')->name('admin.kk.edit');
     Route::patch('/admin/kk/{id}/update', 'update')->name('admin.kk.update');
     Route::delete('/admin/kk/{id}', 'destroy')->name('admin.kk.destroy');
+});
+
+Route::controller(UserAdminController::class)->group(function () {
+    Route::get('/admin/user', 'index')->name('admin.user');
+    Route::get('/admin/user/create', 'create')->name('admin.user.create');
+    Route::post('/admin/user/store', 'store')->name('admin.user.store');
+    Route::get('/admin/user/{id}/edit', 'edit')->name('admin.user.edit');
+    Route::patch('/admin/user/{id}/update', 'update')->name('admin.user.update');
+    Route::delete('/admin/user/{id}', 'destroy')->name('admin.user.destroy');
 });
 
 Route::get('/test-mail', [UserController::class, 'testMail']);
